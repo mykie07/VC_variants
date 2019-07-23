@@ -1,6 +1,3 @@
-from constraint import *
-
-problem = Problem()
 def create_chars():
     problem.addVariable("VC_CHR_GRAPHIC_CARD", ["N-Graphic", "A-Graphic", "Onboard"])
     problem.addVariable("VC_CHR_TYPE", ["Laptop", "Office", "Gaming", "Server"])
@@ -84,58 +81,3 @@ def create_constraints(
 
         )
 
-
-
-
-
-
-
-if __name__ == "__main__":
-    create_chars()
-    VC_CHR_GRAPHIC_CARD = "N-Graphic"
-    VC_CHR_TYPE = "Gaming" #None #"Gaming"              ######find a way to search with empty assignments
-    VC_CHR_CPU = "I-CPU"
-    VC_CHR_MAIN_MEMORY = None #"4"
-    VC_MAT_EQU_SOUND = "No"
-    VC_MAT_EQU_TV = "No"
-    VC_MAT_EQU_MODEM = "No"
-
-    create_constraints(
-                    VC_CHR_GRAPHIC_CARD,
-                    VC_CHR_TYPE,
-                    VC_CHR_CPU,
-                    VC_CHR_MAIN_MEMORY,
-                    VC_MAT_EQU_SOUND,
-                    VC_MAT_EQU_TV,
-                    VC_MAT_EQU_MODEM
-    )
-
-    results = problem.getSolutions() \
-              # in ({'VC_CHR_MAIN_MEMORY': 4}, {'VC_CHR_MAIN_MEMORY': 8})
-
-    for x in results[:]:
-        print(x)
-    print(type(results))
-    print(len(results))
-
-    import pandas as pd
-
-    df=pd.DataFrame(results)
-    MY_VAR = "N-Graphic"
-    dd=df[(df['VC_CHR_GRAPHIC_CARD'] ==VC_CHR_GRAPHIC_CARD) & (df['VC_CHR_TYPE'] == VC_CHR_TYPE) &
-          (df['VC_CHR_CPU'] == VC_CHR_CPU)  & (df['VC_MAT_EQU_SOUND'] == VC_MAT_EQU_SOUND) &
-          (df['VC_MAT_EQU_TV'] == VC_MAT_EQU_TV) & (df['VC_MAT_EQU_MODEM'] == VC_MAT_EQU_MODEM)
-          ]
-#dd dataframe filtering does not produce any row is a characteristic is assigned a None value
-#This actually means that the user has not submited a value, however the system should till give a limited list of variants.
-#SEARCH THE DATAFRAME WITH PLACE HOLDER WILD CARD LIKE FEATURE
-
-    print(dd.to_string())
-
-    # print(results(({'VC_CHR_MAIN_MEMORY': 4}, {'VC_CHR_MAIN_MEMORY': 8})))
-    # print(results["VC_CHR_MAIN_MEMORY"])
-
-    # rr=list(filter(lambda x: x if x['VC_CHR_MAIN_MEMORY'] == 8 else None, results.  values()))
-    # print(rr)
-    #
-    # print(results)
