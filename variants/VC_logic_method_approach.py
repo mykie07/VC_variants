@@ -95,7 +95,7 @@ if __name__ == "__main__":
     VC_CHR_GRAPHIC_CARD = "N-Graphic"
     VC_CHR_TYPE = "Gaming" #None #"Gaming"              ######find a way to search with empty assignments
     VC_CHR_CPU = "I-CPU"
-    VC_CHR_MAIN_MEMORY = None #"4"
+    VC_CHR_MAIN_MEMORY = "4" #"4"
     VC_MAT_EQU_SOUND = "No"
     VC_MAT_EQU_TV = "No"
     VC_MAT_EQU_MODEM = "No"
@@ -121,9 +121,10 @@ if __name__ == "__main__":
     import pandas as pd
 
     df=pd.DataFrame(results)
-    MY_VAR = "N-Graphic"
+    print(df.head())
+    #MY_VAR = "N-Graphic"
     dd=df[(df['VC_CHR_GRAPHIC_CARD'] ==VC_CHR_GRAPHIC_CARD) & (df['VC_CHR_TYPE'] == VC_CHR_TYPE) &
-          (df['VC_CHR_CPU'] == VC_CHR_CPU)  & (df['VC_MAT_EQU_SOUND'] == VC_MAT_EQU_SOUND) &
+          (df['VC_CHR_CPU'] == VC_CHR_CPU) & (df['VC_CHR_MAIN_MEMORY'] == VC_CHR_MAIN_MEMORY) & (df['VC_MAT_EQU_SOUND'] == VC_MAT_EQU_SOUND) &
           (df['VC_MAT_EQU_TV'] == VC_MAT_EQU_TV) & (df['VC_MAT_EQU_MODEM'] == VC_MAT_EQU_MODEM)
           ]
 #dd dataframe filtering does not produce any row is a characteristic is assigned a None value
